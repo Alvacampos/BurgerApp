@@ -18,7 +18,8 @@ const buildControls = ( props ) => {
 					<BuildControl 
 						key = { ctrl.label } 
 						label = { ctrl.label }
-						add = { () => props.add( ctrl.type )}
+						add = { () => props.add( ctrl.type ) }
+						delete = { () => props.delete( ctrl.type )}
 					/>	
 				);				
 			})}			
