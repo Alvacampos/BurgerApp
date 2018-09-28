@@ -59,6 +59,7 @@ class BurgerBuilder extends Component{
 		const updatedIngredientes = {
 			...this.state.ingredients
 		};
+		console.log(this.state.ingredients);
 		updatedIngredientes[ type ] = newCount;
 		const priceDeduction = INGREDIENT_PRICES[ type ];
 		const oldPrice = this.state.totalPrice;
@@ -77,6 +78,15 @@ class BurgerBuilder extends Component{
 
 	puchaseContinueHandler = () => {
 		alert('Thank You');
+		const newOrder = {
+			salad: 0,
+			bacon: 0,
+			cheese: 0,
+			meat: 0,
+		};
+		const newTotal = 0;
+		this.setState({ ingredients: newOrder, totalPrice: newTotal });
+		this.puchaseCancelHandler();
 	}
 
 	render(){
@@ -94,10 +104,13 @@ class BurgerBuilder extends Component{
 						ingredients = { this.state.ingredients } 
 						price = { this.state.totalPrice }
 						cancel = { this.puchaseCancelHandler }
-						continue = { this.puchaseContinueHandler }	
+						continue = { ( element ) => this.puchaseContinueHandler( element ) }	
 					/>
 				</Modal>
-				<Burger ingredients = { this.state.ingredients } />
+				<Burger 
+					ingredients = { this.state.ingredients } 
+					click = { this.removeIngredient }
+				/>
 				<BuildControls 
 					add = { this.addIngredient } 
 					delete = { this.removeIngredient }

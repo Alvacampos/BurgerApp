@@ -9,27 +9,32 @@ class BurgerIngredient extends Component {
 		switch ( this.props.type ){
 			case ( 'bread-top' ):
 				ingredient = ( 
-					<div className = { classes.BreadTop }>
-						<div className = { classes.Seeds1 }></div> 
-						<div className = { classes.Seeds2 }></div> 
+					<div className = { classes.BreadTop } title = ' Calories 79 '>
+						{/*<img src= { require( '../../../assets/Img/1.jpg' )} alt="Bread top" title = ' Calories 79 ' height="100" width="300"/>*/}
+						<div className = { classes.Seeds1 } title = ' Calories 5 '></div> 
+						<div className = { classes.Seeds2 } title = ' Calories 5 '></div> 
 					</div> 
 				);
 				break;
 			case ( 'salad' ):
-				ingredient = <div className = { classes.Salad }></div>;
-				break;
+				ingredient = <div 
+					className = { classes.Salad } onClick = { this.props.click } title = ' Calories 5 '></div>;
+					break;
 			case ( 'bacon' ):
-				ingredient = <div className = { classes.Bacon }></div>;
-				break;
+				ingredient = <div 
+					className = { classes.Bacon } onClick = { this.props.click } title = ' Calories 93 '></div>;
+					break;
 			case ( 'cheese' ):
-				ingredient = <div className = { classes.Cheese }></div>;
-				break;
+				ingredient = <div 
+					className = { classes.Cheese } onClick = { this.props.click } title = ' Calories 130 '></div>;
+					break;
 			case ( 'meat' ):
-				ingredient = <div className = { classes.Meat }></div>;
-				break;
+				ingredient = <div 
+					className = { classes.Meat } onClick = { this.props.click } title = ' Calories 175 '></div>;
+					break;
 			case ( 'bread-bottom' ):
-				ingredient = <div className = { classes.BreadBottom }></div>;
-				break;
+				ingredient = <div className = { classes.BreadBottom } title = ' Calories 79 '></div>;
+					break;
 			default: 
 				ingredient = null;			
 		}

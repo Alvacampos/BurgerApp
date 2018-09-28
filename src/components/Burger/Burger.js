@@ -9,7 +9,8 @@ const burger = ( props ) => {
 				return (
 					<BurgerIngredient 
 						key = { element + i }
-						type = { element } 
+						type = { element }
+						click = { () => props.click( element ) }
 					/>
 				);
 			});
