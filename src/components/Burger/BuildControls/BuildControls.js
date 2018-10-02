@@ -5,10 +5,10 @@ import BuildControl from './BuildControl/BuildControl';
 const buildControls = ( props ) => {
 
 	const controls = [
-		{ label: 'Salad', type: 'salad', price: 0.5 },
-		{ label: 'Bacon', type: 'bacon', price: 0.8 },
-		{ label: 'Cheese', type: 'cheese', price: 0.6 },
-		{ label: 'Meat', type: 'meat', price: 1.2 },
+		{ label: 'Salad', type: 'salad', price: 10 },
+		{ label: 'Bacon', type: 'bacon', price: 15 },
+		{ label: 'Cheese', type: 'cheese', price: 20 },
+		{ label: 'Meat', type: 'meat', price: 30 },
 	];
 
 	return (
