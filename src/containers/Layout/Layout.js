@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './Layout.css';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
@@ -12,6 +12,7 @@ class Layout extends Component {
 	sideDrawerHandler = () => {
 		this.setState({ showSideDrawer: false });
 	}
+	
 	openSideDrawer = () => {
 		this.setState( prevState => { 
 			return { showSideDrawer: !prevState.showSideDrawer };
