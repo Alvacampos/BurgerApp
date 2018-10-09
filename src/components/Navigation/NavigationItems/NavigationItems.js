@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import classes from './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
 
 const navigationItems = () => {
 	return (
 		<ul className = { classes.NavigationItems }>
-			<NavigationItem link = '/' active = {true}>Burger Builder</NavigationItem>
-			<NavigationItem link = '/'>Check Out</NavigationItem>
-			<NavigationItem link = '/'>Contact</NavigationItem>
-			<NavigationItem link = '/'>Skills</NavigationItem>
-			<NavigationItem link = '/'>Home</NavigationItem>
+			<NavLink to = '/burgerbuilder'>Burger Builder</NavLink>
+			<NavLink to = '/checkout'>Check Out</NavLink>
+			<NavLink to = '/contact'>Contact</NavLink>
+			<NavLink to = '/skills'>Skills</NavLink>
+			<NavLink to = '/'>Home</NavLink>
 		</ul>
 	);
 }
