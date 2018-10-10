@@ -31,17 +31,19 @@ class Checkout extends Component {
     this.props.history.replace( '/checkout/contact-data' );
   }
 
-  render () {    
+  render () {
+    const { onCancel, onContinue } = this;
+    const { ingredients, totalPrice, history } = this.state;
     return (
       <div>
         <CheckoutSummary 
-          ingredients = { this.state.ingredients }
-          onCancel = { this.onCancel }
-          onContinue = {this.onContinue }
+          ingredients = { ingredients }
+          onCancel = { onCancel }
+          onContinue = { onContinue }
           />
         <Route 
           path = { this.props.match.path + '/contact-data'}  
-          render = {() => (<ContactData ingredients = { this.state.ingredients } price = { this.state.totalPrice } dir = {this.props.history} />)} 
+          render = {() => (<ContactData ingredients = { ingredients } price = { totalPrice } dir = { history } />)} 
         />
       </div>
     );

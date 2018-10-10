@@ -120,47 +120,49 @@ class BurgerBuilder extends Component {
   }
 
   render () {
-    let orderSummary = null;      
+    let orderSummary = null;  
+    const { ingredients, purchaseable, purchasing, totalPrice, loading } = this.state;
+    const { removeIngredient, addIngredient, puchaseHangler, puchaseContinueHandler, puchaseCancelHandler } = this;
     let burger = this.state.error ? <p>Ups! there is an problem with the burger</p> : <Spinner />;
     const disabledInfo = {
-      ...this.state.ingredients
+      ...ingredients
     };    
     for ( let key in disabledInfo ) {
       disabledInfo[key] = disabledInfo[key] <= 0;           
     }   
-    if( this.state.ingredients ) {
+    if( ingredients ) {
       burger = (
         <Auxiliary>
           <Burger 
-            ingredients = { this.state.ingredients } 
-            click = { this.removeIngredient }
+            ingredients = { ingredients } 
+            click = { removeIngredient }
           />
           <BuildControls 
-            add = { this.addIngredient } 
-            delete = { this.removeIngredient }
+            add = { addIngredient } 
+            delete = { removeIngredient }
             disabled = { disabledInfo }
-            price = { this.state.totalPrice }
-            purchaseable = { this.state.purchaseable }
-            ordered = { this.puchaseHangler }
+            price = { totalPrice }
+            purchaseable = { purchaseable }
+            ordered = { puchaseHangler }
           />
         </Auxiliary>
       );
       orderSummary = (
         <OrderSummary 
-          ingredients = { this.state.ingredients } 
-          price = { this.state.totalPrice }
-          cancel = { this.puchaseCancelHandler }
-          continue = { this.puchaseContinueHandler }  
+          ingredients = { ingredients } 
+          price = { totalPrice }
+          cancel = { puchaseCancelHandler }
+          continue = { puchaseContinueHandler }  
         />
       );
     }
-    if ( this.state.loading ) {
+    if ( loading ) {
       orderSummary = <Spinner />;
     } 
 
     return (
       <Auxiliary>
-        <Modal show = { this.state.purchasing } modalClosed = { this.puchaseCancelHandler }>
+        <Modal show = { purchasing } modalClosed = { puchaseCancelHandler }>
           { orderSummary }
         </Modal>
         { burger }  

@@ -3,8 +3,9 @@ import classes from './Toolbar.css';
 import NavigationItems from '../NavigationItems/NavigationItems';
 
 const toolbar = ( props ) => {
+  const { Toolbar, DesktopOnly } = classes;
   return (
-    <header className = { classes.Toolbar }>
+    <header className = { Toolbar }>
       <img 
         src = { require( '../../../assets/Img/burger-logo.png' )} 
         alt = 'logo' 
@@ -12,7 +13,7 @@ const toolbar = ( props ) => {
         heigth = '50' 
         onClick = { props.menu }
       />
-      <nav className = { classes.DesktopOnly }>
+      <nav className = { DesktopOnly }>
         <NavigationItems />
       </nav>
     </header>
