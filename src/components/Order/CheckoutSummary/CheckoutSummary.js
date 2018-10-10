@@ -1,6 +1,5 @@
 import React from 'react';
 import Burger from '../../Burger/Burger';
-import { NavLink } from 'react-router-dom';
 import Button from '../../UI/Button/Button';
 import classes from './CheckoutSummary.css';
 const CheckoutSummary = (props) => {

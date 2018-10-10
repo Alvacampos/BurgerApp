@@ -15,7 +15,6 @@ class BurgerBuilder extends Component {
     totalPrice: 0,
     purchaseable: false,
     purchasing: false,
-    loading: false,
     error: null
   }
 
@@ -63,7 +62,7 @@ class BurgerBuilder extends Component {
         .reduce(( sum, el ) => {
           return sum + el;
         }, 0);
-    this.setState({ purchaseable: sum > 0 });   
+    this.setState({ purchaseable: sum > 0 });    
   }
 
   addIngredient = ( type ) => {
@@ -98,44 +97,21 @@ class BurgerBuilder extends Component {
   }
 
   puchaseHangler = () => {
-    this.setState({ purchasing: true });
+    this.setState({ purchasing: true });       
   }
 
   puchaseCancelHandler = () => {
     this.setState({ purchasing: false });
+    this.getIngredients();
+    this.getTotalPrice(); 
   }
 
   puchaseContinueHandler = () => {
-    //alert('Thank You');
-    // this.setState({ loading: true });
-    // const order = {
-    //  ingredients: this.state.ingredients,
-    //  price: this.state.totalPrice,
-    //  customer: {
-    //    name: 'Gonzalo Alvarez Campos',
-    //    address: {
-    //      street: 'asd123',
-    //      zipCode: '4107',
-    //      country: 'Argentina'
-    //    },
-    //    email: 'gonzalo@mail.com',
-    //  },      
-    // }
-    // axios.post('/orders.json', order)
-    //  .then( response => {
-    //    this.setState({ loading: false, purchasing: false });
-    //  })
-    //  .catch( error => {
-    //    this.setState({ loading: false, purchasing: false });
-    //    alert('Error');
-    //  });
-    // this.getIngredients();
-  //   this.getTotalPrice();      
-    // this.puchaseCancelHandler();
     const data =  [];
     for ( let i in this.state.ingredients ) {
       data.push( encodeURIComponent(i) + '=' + encodeURIComponent( this.state.ingredients[i] ));
     }
+    data.push(`price=${this.state.totalPrice}`);
     const dataString = data.join('&');
     this.props.history.push({
       pathname: '/checkout',
@@ -178,7 +154,7 @@ class BurgerBuilder extends Component {
         />
       );
     }
-    if ( this.state.loading ){
+    if ( this.state.loading ) {
       orderSummary = <Spinner />;
     } 
 

@@ -8,6 +8,10 @@
   height: 100%;
 }
 
+.NavLink {
+ text-decoration: none;
+}
+
 @media (min-width: 500px) {
   .NavigationItems {
     flex-flow: row;

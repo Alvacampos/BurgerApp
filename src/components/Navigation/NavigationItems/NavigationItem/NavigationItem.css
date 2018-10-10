@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-.NavigationItem a {
+.NavigationItem p {
   color: #8F5C2C;
   text-decoration: none;
   width: 100%;
@@ -13,9 +13,7 @@
   display: block;
 }
 
-.NavigationItem a:hover,
-.NavigationItem a:active,
-.NavigationItem a.active {
+.NavigationItem p:hover{
   color: #40A4C8;
 }
 
@@ -28,16 +26,14 @@
     align-items: center;  
   }
 
-  .NavigationItem a {
+  .NavigationItem p {
     color: white;
     height: 100%;
     padding: 16px 10px;
     border-bottom: 4px solid transparent;
   }
 
-  .NavigationItem a:hover,
-  .NavigationItem a:active,
-  .NavigationItem a.active {
+  .NavigationItem p:hover {
     background-color: #8f5c2c;
     border-bottom: 4px solid #40a4c8;
     color: white;
