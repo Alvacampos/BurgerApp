@@ -33,7 +33,7 @@ class Checkout extends Component {
 
   render () {
     const { onCancel, onContinue } = this;
-    const { ingredients, totalPrice, history } = this.state;
+    const { ingredients, totalPrice } = this.state;
     return (
       <div>
         <CheckoutSummary 
@@ -43,7 +43,7 @@ class Checkout extends Component {
           />
         <Route 
           path = { this.props.match.path + '/contact-data'}  
-          render = {() => (<ContactData ingredients = { ingredients } price = { totalPrice } dir = { history } />)} 
+          render = {( props ) => (<ContactData ingredients = { ingredients } price = { totalPrice } {...props} />)} 
         />
       </div>
     );

@@ -7,7 +7,7 @@
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
-@media (min-width: 500px) {
+@media (min-width: 550px) {
   .Backdrop {
      background-color: rgba(0, 0, 0, 0);
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Layout from './containers/Layout/Layout';
 import Home from './components/Home/Home';
+import Orders from './containers/Orders/Orders';
 import Skills from './components/Skills/Skills';
 import Contact from './components/Contact/Contact';
 import Checkout from './containers/Checkout/Checkout';
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path = '/contact' exact component = { Contact }  />
             <Route path = '/burgerbuilder' exact component = { BurgerBuilder } />
             <Route path = '/checkout' component = { Checkout } />
+            <Route path = '/orders' component = { Orders } />
           </Switch>         
         </Layout>
       </div>

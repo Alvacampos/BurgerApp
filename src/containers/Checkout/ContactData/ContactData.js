@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './ContactData.css';
 import axios from '../../../axios-order';
+import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
@@ -36,22 +37,22 @@ class ContactData extends Component {
     axios.post('/orders.json', order)
      .then( response => {
        this.setState({ loading: false });
+       this.props.history.push('/');
      })
      .catch( error => {
        this.setState({ loading: false });
        alert('Error');
-     });    
-     this.props.dir.replace( '/' );
+     });     
   }
 
   render () {
     let form = (
       <form>
-        <input className = { classes.Input } type="text" name = 'name' placeholder = 'Your name' />
-        <input className = { classes.Input } type="email" name = 'email' placeholder = 'Your email' />
-        <input className = { classes.Input } type="text" name = 'street' placeholder = 'Your street' />
-        <input className = { classes.Input } type="text" name = 'code' placeholder = 'Your zipcode' />
-        <input className = { classes.Input } type="text" name = 'country' placeholder = 'Your country' />
+        <Input inputtype = 'input'  type="text" name = 'name' placeholder = 'Your name' />
+        <Input inputtype = 'input'  type="email" name = 'email' placeholder = 'Your email' />
+        <Input inputtype = 'input'  type="text" name = 'street' placeholder = 'Your street' />
+        <Input inputtype = 'input'  type="text" name = 'code' placeholder = 'Your zipcode' />
+        <Input inputtype = 'input'  type="text" name = 'country' placeholder = 'Your country' />
         <Button btnType = 'Success' clicked = { this.orderHandler } >Order</Button>
       </form>
     );
