@@ -20,6 +20,7 @@ class Orders extends Component {
           });
         }
         this.setState({ loading: false, orders: fetchedOrders });
+        console.log(this.state.orders);
       })
       .catch( error => {
         this.setState({ loading: false });
@@ -28,11 +29,12 @@ class Orders extends Component {
   }
   render () {
     let load = null;
-    let order  = this.state.orders.map( item => {      
+    let order  = this.state.orders.map( item => {
+      console.log(item.orderData)    ;
       return (
         <Order
           key = { item.id }
-          customer = { item.customer.name } 
+          customer = { item.orderData.name } 
           bacon = { item.ingredients.bacon }
           cheese = { item.ingredients.cheese }
           meat =  { item.ingredients.meat }

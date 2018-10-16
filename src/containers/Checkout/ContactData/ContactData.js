@@ -14,15 +14,23 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Your Name'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       email:{
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Your Name'
+          placeholder: 'Your Email'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       street: {
         elementType: 'input',
@@ -30,7 +38,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Your Street'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       zipcode: {
         elementType: 'input',
@@ -38,7 +50,11 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Your Zipcode'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
       country: {
         elementType: 'input',
@@ -46,28 +62,27 @@ class ContactData extends Component {
           type: 'text',
           placeholder: 'Your Country'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
       },
     },
     loading: false
   }
 
   orderHandler = (event) => {
-    event.preventDefault();
-    alert('Thank You');
+    event.preventDefault();    
     this.setState({ loading: true });
+    const formData = {};
+    for ( let formElement in this.state.orderForm ) {
+      formData[formElement] = this.state.orderForm[formElement].value;
+    }
     const order = {
      ingredients: this.props.ingredients,
      price: this.props.price,
-     customer: {
-       name: 'Gonzalo Alvarez Campos',
-       address: {
-         street: 'asd123',
-         zipCode: '4107',
-         country: 'Argentina'
-       },
-       email: 'gonzalo@mail.com',
-     },      
+     orderData: formData
     }
     axios.post('/orders.json', order)
      .then( response => {
@@ -80,15 +95,48 @@ class ContactData extends Component {
      });     
   }
 
+  inputChanged = ( event, inputId ) => {
+    const updatedForm = {
+      ...this.state.orderForm
+    };
+    const updatedFormItem = {
+      ...updatedForm[inputId]
+    };
+    updatedFormItem.value = event.target.value;
+    updatedForm[inputId] = updatedFormItem;
+    this.setState({ orderForm: updatedForm });
+  }
+
+  checkValidity = ( value, rules ) => {
+    let isValid = false;
+    if ( rules.required ) {
+      isValid = value.trim() !== '';
+    }
+    return isValid;
+  }
+
   render () {
+    const formArray = [];
+    for( let key in this.state.orderForm ) {
+      formArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
     let form = (
-      <form>
-        <Input elementType = '...' elementConfig = '...' value = '...' />
-        <Input inputtype = 'input'  type="email" name = 'email' placeholder = 'Your email' />
-        <Input inputtype = 'input'  type="text" name = 'street' placeholder = 'Your street' />
-        <Input inputtype = 'input'  type="text" name = 'code' placeholder = 'Your zipcode' />
-        <Input inputtype = 'input'  type="text" name = 'country' placeholder = 'Your country' />
-        <Button btnType = 'Success' clicked = { this.orderHandler } >Order</Button>
+      <form onSubmit = { this.orderHandler }>        
+        {formArray.map(formItem=> {
+          return (
+            <Input
+              key = { formItem.id }
+              elementType = { formItem.config.elementType }
+              elementConfig = { formItem.config.elementConfig }
+              value = { formItem.config.value }
+              changed = { ( event ) => { this.inputChanged( event, formItem.id ) }}
+            />
+          );
+        })}        
+        <Button btnType = 'Success'>Order</Button>
       </form>
     );
     if ( this.state.loading ) {
