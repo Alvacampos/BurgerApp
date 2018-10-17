@@ -21,7 +21,7 @@
   background-color: #006400;
 }
 
-.Danger {
+.Danger, .Button:disabled {
   color: #000000;
   background-color: #be0027;
 }
